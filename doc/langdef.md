@@ -1230,9 +1230,9 @@ matches succeed if they match a substring of the argument. Use explicit anchors
 
 #### Presence and Comprehension Macros
 
-**has(message.field)** \- Checks if a field exists within a message. This macro
-supports proto2, proto3, and map key accesses. Only map accesses using the
-select notation are supported.
+**has(message.field)** \- Checks a protocol buffer message for the presence
+of a field, or check a map for the presence of a string key. Only map accesses
+using the select notation are supported.
 
 **Signatures**
 
@@ -1248,7 +1248,6 @@ has(user.address)
 has(m.key_name)
 // `false` if the 'items' field is not set in the 'order' message
 has(order.items)
-// `false` if the 'user_id' key is not present in the 'sessions' map has(sessions.user_id)
 ```
 
 **all \-** Tests whether all elements in the input list or all keys in a map
@@ -1352,8 +1351,7 @@ operations.
 
 #### Logical Operators
 
-**Logical NOT (\!)** \- Takes a boolean value as input and returns the opposite
-boolean value.
+**Logical NOT (\!)** \- Logically negate a boolean value
 
 **Signatures:**
 
@@ -1503,7 +1501,7 @@ timestamp('2023-01-10T12:00:00Z')
   -   timestamp('2023-01-10T00:00:00Z') // duration('12h')
 ```
 
-**Division (/)** \- Divides two numeric values.
+**Division (/)** \- Divide two numbers.
 
 **Signatures:**
 
@@ -1531,8 +1529,7 @@ range. For this reason, numeric comparisons across type are supported at
 runtime as all numeric representations may be considered to exist along a
 shared number line independent of their representation in memory.
 
-**Equality (==)** \- Compares two values of the same type and returns `true` if
-they are equal, and `false` otherwise
+**Equality (==)** \- Compares two values of the same type for equality.
 
 **Signatures:**
 
@@ -1548,8 +1545,7 @@ duration('1h') == duration('60m') // true
 dyn(3.0) == 3 // true
 ```
 
-**Inequality (\!=)** \- Takes two values of the same type and returns `true` if
-they are not equal, and `false` otherwise.
+**Inequality (\!=)** \- Compares two values of the same type for inequality.
 
 **Signatures:**
 
